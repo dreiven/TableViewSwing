@@ -70,7 +70,7 @@ public class TableView implements ActionListener {
 //        modelo.addColumn(columnas);
         //se llama al metodo Rellenar para introducir datos en el array de personas grupo , el cual se le pasa por parametro
         Utiles.RellenarArray(grupo);
-//        Utiles.CargaBaseDatos(modelo,tabla);
+        Utiles.CargaBaseDatos(modelo,tabla);
 //        Utiles.ordenNombre(grupo);
 //        Utiles.OrdenEdad(grupo);
         //se setean distintas propiedades de la ventana objeto JFrame, como,el titulo,tamaño,color,localizacion
