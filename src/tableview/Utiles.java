@@ -12,7 +12,7 @@ import javax.swing.JTable;
 
 /**
  *
- * @author PC
+ * @author PC Albert Arranz
  */
 public class Utiles {
 
@@ -32,7 +32,7 @@ public class Utiles {
     }
     
     
-    public static JTable RellenarTabla(JTable tabla, Persona[] grupo){
+    public static JTable RellenarTablaLocal(JTable tabla, Persona[] grupo){
                 //se declara un int como contador , se ocupara de controlar las filas ,se inicializa en 0
                 int nroFilas = 0;
                 //bucle for para recorrer el array de objetos persona grupo
@@ -88,20 +88,17 @@ public class Utiles {
 
     
     
-    
-    
-    
-    public static ModeloTabla CargaBaseDatos(ModeloTabla modelo , JTable tabla) {
-
+    public static ModeloTabla CargaBaseDatos(ModeloTabla modelo, JTable tabla ) {
+        //se declara condicion para que no repinte la tabla con los mismos datos una y otra vez
+        //,si el modelo contiene menos de 0 filas accede
+        if (modelo.getRowCount()<1){
         try {
 //        DefaultTableModel modelo = new DefaultTableModel();
             java.sql.Connection conexion = null;
             String url = "jdbc:mysql://localhost:3306/Control";
             String user = "root";
             String password = "";
-            int row = 0;
-            int column = 0;
-            int cont = 0;
+          
             Object[] fila = new Object[3];
             conexion = DriverManager.getConnection(url, user, password);
             Statement sentencia = conexion.createStatement();
@@ -123,9 +120,10 @@ public class Utiles {
 
         } catch (Exception e) {
         }
-//        tabla.updateUI();
+         tabla.updateUI();
+        
+        }
         return modelo;
-
     }
 
     public static void BorrarTabla(ModeloTabla modelo){

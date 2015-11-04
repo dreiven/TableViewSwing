@@ -23,7 +23,7 @@ import javax.swing.JTable;
 
 /**
  *
- * @author PC
+ * @author PC Albert Arranz
  *
  *
  */
@@ -68,9 +68,9 @@ public class TableView implements ActionListener {
         //se setea el modelo de la tabla declarado en la tabla actual
         tabla.setModel(modelo);
 //        modelo.addColumn(columnas);
-        //se llama al metodo Rellenar para introducir datos en el array de personas grupo , el cual se le pasa por parametro
+        //se llama al metodo RellenarArray para introducir datos en el array de personas grupo , el cual se le pasa por parametro
         Utiles.RellenarArray(grupo);
-        Utiles.CargaBaseDatos(modelo,tabla);
+//        Utiles.CargaBaseDatos(modelo,tabla);
 //        Utiles.ordenNombre(grupo);
 //        Utiles.OrdenEdad(grupo);
         //se setean distintas propiedades de la ventana objeto JFrame, como,el titulo,tamaño,color,localizacion
@@ -87,8 +87,8 @@ public class TableView implements ActionListener {
         ventana.add(tabla);
         //se setean las propiedades de tamaño,localizacion,color
         //se añaden al panel los componentes btn_slr y btn_mst y se muestra el panel a traves del metodo setVisible a true
-        panel.setSize(250, 500);
-        panel.setLocation(150, 350);
+        panel.setSize(350, 500);
+        panel.setLocation(75, 350);
         panel.setBackground(Color.red);
         panel.add(btn_slr);
         panel.add(btn_mst);
@@ -96,12 +96,13 @@ public class TableView implements ActionListener {
         panel.add(chk_btn_ordEdad);
         panel.add(btn_brr);
         panel.setVisible(true);
+        
         //se setean las propiedades de los botones , tamaño texto,localizacion
         btn_slr.setSize(100, 35);
         btn_slr.setText("Salir");
         btn_slr.setLocation(350, 350);
         btn_mst.setSize(100, 35);
-        btn_mst.setText("Mostrar");
+        btn_mst.setText("Mostrar \nBase de datos");
         btn_mst.setLocation(150, 350);
         btn_brr.setSize(100, 35);
         btn_brr.setText("Borrar");
@@ -148,9 +149,10 @@ public class TableView implements ActionListener {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                Utiles.CargaBaseDatos(modelo, tabla);
-
+                
+                Utiles.CargaBaseDatos(modelo,tabla);
+                //se llama al metodo repaint para que el component no desaparezca durante la carga de bbdd
+                panel.repaint();
             }
         };
 
@@ -167,12 +169,12 @@ public class TableView implements ActionListener {
             //se reescribe el metodo de accion realizada en el componente
             @Override
             public void actionPerformed(ActionEvent e) {
-                Utiles.RellenarTabla(tabla, grupo);
+                Utiles.RellenarArray(grupo);
             }
 
         };
         //asociamos al componente btn_mst el objeto action Listener declara anteriormente
-        btn_mst.addActionListener(accionMostrar);
+        btn_mst.addActionListener(accionCargarBaseDatos);
         //asociamos al componente chk_btn_ordNombre el objeto action Listener
         chk_btn_ordNombre.addActionListener(accionOrdenNombre);
         //asociamos al componente chk_btn_ordEdad el objeto action Listener
