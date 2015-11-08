@@ -45,8 +45,7 @@ public class TableView implements ActionListener {
 
     public TableView() throws SQLException {
         //se declara un array de Strings con los identificadores de cada columna
-        String[] columnas = {"id", "Nombre", "Password"};
-
+        String[] columnas = {"idLibro", "Autor", "titulo"};
         ventana = new JFrame();
         modelo = new ModeloTabla();
         tabla = new JTable(modelo);
@@ -61,10 +60,8 @@ public class TableView implements ActionListener {
         chk_btn_ordEdad = new JCheckBox();
         //se crea el objeto btn_brr
         btn_brr = new JButton();
-        //se declara Obj JScrollpane para introducir dentro la tabla y se visualice el header()
+        //se declara Obj JScrollpane para introducir dentro la tabla y se visualice el header() se utiliza modelo y se especifican las columnas
         //JScrollPane scrTbl = new JScrollPane();
-        //se setea en el objeto Modelotabla los identificadores  de las columnas
-        modelo.setColumnIdentifiers(columnas);
         //se setea el modelo de la tabla declarado en la tabla actual
         tabla.setModel(modelo);
 //        modelo.addColumn(columnas);
@@ -169,7 +166,7 @@ public class TableView implements ActionListener {
             //se reescribe el metodo de accion realizada en el componente
             @Override
             public void actionPerformed(ActionEvent e) {
-                Utiles.RellenarArray(grupo);
+                Utiles.RellenarTablaLocal(tabla,grupo,modelo);
             }
 
         };
