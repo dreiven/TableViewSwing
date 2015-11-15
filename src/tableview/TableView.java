@@ -128,6 +128,7 @@ public class TableView implements ActionListener {
             public void actionPerformed(ActionEvent e) {
 
                 Utiles.OrdenEdad(grupo);
+               
 
             }
         };
